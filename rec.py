@@ -11,6 +11,10 @@ from modules.carlainterface.carlainterface_process import connect_carla
 # Constants
 WIDTH, HEIGHT = 1280,720 #1928, 1208
 
+X_CAM, Y_CAM, Z_CAM = 1.5, 0, 0.9
+X_CAM_WIDE, Y_CAM_WIDE, Z_CAM_WIDE = 1.6, 0, 0.9
+FOV_WIDE = 145
+
 class DataLogger:
     def __init__(self, csv_filename):
         self.file = open(csv_filename, 'w', newline='')
@@ -81,14 +85,15 @@ def main():
     if args.wide:
         video_listener_wide = VideoListener(filepath + '_wide.mp4', args.fps) 
         camera_bp_wide = blueprint_library.find('sensor.camera.rgb')
-        camera_bp_wide.set_attribute('fov', '110')  # Setting a wide field of view
+        camera_bp_wide.set_attribute('fov', str(FOV_WIDE))  # Setting a wide field of view
         camera_bp_wide.set_attribute('image_size_x', str(WIDTH))
         camera_bp_wide.set_attribute('image_size_y', str(HEIGHT))   
 
 
-    camera_sensor = world.spawn_actor(camera_bp, carla.Transform(carla.Location(x=0., y=0., z=0.9), carla.Rotation()), attach_to=vehicle)
+
+    camera_sensor = world.spawn_actor(camera_bp, carla.Transform(carla.Location(x=X_CAM, y=Y_CAM, z=Z_CAM), carla.Rotation()), attach_to=vehicle)
     if args.wide:
-        camera_sensor_wide = world.spawn_actor(camera_bp_wide, carla.Transform(carla.Location(x=0., y=0., z=0.9), carla.Rotation()), attach_to=vehicle)
+        camera_sensor_wide = world.spawn_actor(camera_bp_wide, carla.Transform(carla.Location(x=X_CAM_WIDE, y=Y_CAM_WIDE, z=Z_CAM_WIDE), carla.Rotation()), attach_to=vehicle)
 
     imu_bp = blueprint_library.find('sensor.other.imu')
     imu_sensor = world.spawn_actor(imu_bp, carla.Transform(), attach_to=vehicle)
