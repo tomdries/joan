@@ -2,10 +2,13 @@
 Usage
    python rec.py filename_out filedir_out --options
 
-   Options:
-   --wide: record an additional wide-angle video, default False
+   filename_out should be without extension, as it creates an one or two mp4 files and a csv file.
+
+   Flags:
+   --wide: records an additional wide-angle video, off by default 
+   --timestamp: adds a timestamp suffix to recording filenames with timestamp, off by default
    --fps: set fps of output video, default 20
-   --timestamp: add suffix to recording filenames with timestamp
+
 """
 
 
