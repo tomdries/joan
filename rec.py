@@ -1,3 +1,14 @@
+"""
+Usage
+   python rec.py filename_out filedir_out --options
+
+   Options:
+   --wide: record an additional wide-angle video, default False
+   --fps: set fps of output video, default 20
+   --timestamp: add suffix to recording filenames with timestamp
+"""
+
+
 import cv2
 import csv
 import carla
@@ -8,9 +19,7 @@ from time import sleep
 from datetime import datetime
 from modules.carlainterface.carlainterface_process import connect_carla
 
-# Constants
 WIDTH, HEIGHT = 1280,720 #1928, 1208
-
 X_CAM, Y_CAM, Z_CAM = 1.5, 0, 0.9
 X_CAM_WIDE, Y_CAM_WIDE, Z_CAM_WIDE = 1.6, 0, 0.9
 FOV_WIDE = 145
