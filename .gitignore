@@ -46,6 +46,7 @@ pip-delete-this-directory.txt
 .idea
 
 # ignore data files
+recordings/
 /data_logs/*.csv
 
 # except for the trajectory csv files
